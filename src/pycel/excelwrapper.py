@@ -168,11 +168,12 @@ class ExcelOpxWrapper(ExcelWrapper):
     def defined_names(self):
         if self.workbook is not None and self._defined_names is None:
             self._defined_names = {}
-
-            for d_name in self.workbook.defined_names.definedName:
+            for d_name in self.workbook.defined_names.values():
                 destinations = [
-                    (alias, wksht) for wksht, alias in d_name.destinations
-                    if wksht in self.workbook]
+                    (alias, wksht)
+                    for wksht, alias in d_name.destinations
+                    if wksht in self.workbook
+                ]
                 if len(destinations):
                     self._defined_names[str(d_name.name)] = destinations
         return self._defined_names
