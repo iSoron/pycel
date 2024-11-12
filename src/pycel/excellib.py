@@ -406,6 +406,13 @@ def trunc(number, num_digits=0):
     return int(number * factor) / factor
 
 
+@excel_math_func
+def quotient(numerator, denominator):
+    if denominator == 0:
+        return VALUE_ERROR
+    return math.trunc(numerator / denominator)
+
+
 # Older mappings for excel functions that match Python built-in and keywords
 x_abs = abs_
 xatan2 = atan2_
